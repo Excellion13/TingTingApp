@@ -19,5 +19,5 @@ workflows:
         script: |
           buildozer android debug
     artifacts:
-      - build/*.apk
-      - bin/*.apk
+      - build/**/*.apk
+      - bin/**/*.apk
