@@ -1,0 +1,23 @@
+workflows:
+  android-kivy-build:
+    name: Build Kivy APK
+    max_build_duration: 15
+    environment:
+      vars:
+        BUILD_MODE: "debug"
+      flutter: null
+      xcode: null
+      java: 17
+    scripts:
+      - name: Install dependencies
+        script: |
+          apt update && apt install -y python3-pip zip unzip openjdk-17-jdk build-essential git
+          pip3 install --upgrade pip
+          pip3 install Cython
+          pip3 install buildozer
+      - name: Build APK
+        script: |
+          buildozer android debug
+    artifacts:
+      - build/*.apk
+      - bin/*.apk
